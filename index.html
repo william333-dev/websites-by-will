@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Websites By Will — Clean, fast websites for NZ small businesses</title>
+<meta name="description" content="Will is a young Christchurch web designer building clean, fast, professional websites for Kiwi small businesses. Free sample built first, $299 one-off, you own it, no monthly fees.">
+<meta name="theme-color" content="#F6F2EA">
+<!-- Favicon: clay monogram, inline so there's no extra request -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23d4492a'/><text x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23f6f2ea'>W</text></svg>">
+
+<!-- One web font for headings (Fraunces — characterful, editorial). Body uses instant system fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#f6f2ea;        /* warm cream background */
+    --paper-2:#fffdf8;      /* card / panel */
+    --ink:#1a1815;          /* warm near-black text */
+    --ink-2:#56524b;        /* muted body text */
+    --ink-3:#8b867c;        /* faint labels */
+    --line:rgba(26,24,21,.12);
+    --line-2:rgba(26,24,21,.08);
+    --accent:#d4492a;       /* clay / persimmon */
+    --accent-deep:#b63a1f;  /* darker for hover/text */
+    --accent-bright:#ee6a47;/* on dark backgrounds */
+    --radius:18px;
+    --container:1160px;
+    --shadow:0 1px 2px rgba(26,24,21,.04), 0 12px 32px -16px rgba(26,24,21,.22);
+    --shadow-lg:0 2px 4px rgba(26,24,21,.05), 0 30px 60px -28px rgba(26,24,21,.35);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;font-family:var(--sans);background:var(--paper);color:var(--ink);
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:var(--serif);font-optical-sizing:auto;font-weight:600;line-height:1.05;letter-spacing:-.02em;margin:0}
+  h1 em,h2 em{font-style:italic;color:var(--accent);font-weight:600}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  :focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  .wrap{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.78rem;
+    font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);
+  }
+  .eyebrow::before{content:"";width:22px;height:1.5px;background:var(--accent);display:inline-block}
+  .eyebrow.light{color:var(--accent-bright)}
+  .eyebrow.center{justify-content:center}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+    font-family:var(--sans);font-weight:600;font-size:1rem;line-height:1;
+    padding:16px 26px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    min-height:52px;white-space:nowrap;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px rgba(212,73,42,.7)}
+  .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(212,73,42,.75)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-light{background:var(--paper);color:var(--ink)}
+  .btn-light:hover{background:#fff;transform:translateY(-2px)}
+  .btn .arw{transition:transform .18s ease}
+  .btn:hover .arw{transform:translate(3px,-3px)}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,242,234,.82);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent;transition:border-color .25s ease, box-shadow .25s ease}
+  header.scrolled{border-color:var(--line-2);box-shadow:0 1px 0 rgba(26,24,21,.03)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:600;font-size:1.22rem;letter-spacing:-.01em}
+  .mark{width:38px;height:38px;border-radius:11px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1.25rem;flex:none;box-shadow:0 6px 14px -6px rgba(212,73,42,.8)}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-size:.98rem;font-weight:500;color:var(--ink-2);transition:color .15s ease}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:18px}
+  .nav-cta .btn{padding:12px 20px;min-height:46px;font-size:.95rem}
+  @media (max-width:880px){.nav-links{display:none}.nav-cta .phone{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:clamp(48px,8vw,104px) 0 clamp(56px,8vw,96px)}
+  .hero::before{ /* warm glow, not the slop kind */
+    content:"";position:absolute;top:-10%;right:-5%;width:60vw;height:60vw;max-width:760px;max-height:760px;
+    background:radial-gradient(circle at center, rgba(212,73,42,.13), transparent 62%);z-index:0;pointer-events:none;
+  }
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
+  .hero h1{font-size:clamp(2.7rem,6.4vw,5rem);margin:22px 0 0}
+  .hero .lede{font-size:clamp(1.08rem,1.7vw,1.32rem);color:var(--ink-2);max-width:30ch;margin:24px 0 0}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;list-style:none;padding:0}
+  .hero-trust li{display:flex;align-items:center;gap:8px;font-size:.92rem;font-weight:500;color:var(--ink-2)}
+  .tick{width:18px;height:18px;flex:none;color:var(--accent)}
+  @media (max-width:840px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero .lede{max-width:46ch}
+  }
+
+  /* Browser mock (swap the .screen contents for a real screenshot) */
+  .mock{position:relative}
+  .browser{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;transform:rotate(.6deg);transition:transform .3s ease}
+  .browser:hover{transform:rotate(0deg) translateY(-4px)}
+  .browser-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line-2);background:#fbf8f2}
+  .browser-bar i{width:11px;height:11px;border-radius:50%;background:#ddd6c8;display:block}
+  .browser-bar i:nth-child(1){background:#e8a08c}
+  .browser-bar i:nth-child(2){background:#ecc98a}
+  .browser-bar i:nth-child(3){background:#a7c9a0}
+  .browser-bar span{margin-left:10px;font-size:.72rem;color:var(--ink-3);background:var(--paper);padding:4px 12px;border-radius:99px}
+  /* A little faux-site preview so it reads as "I make nice sites" */
+  .screen{aspect-ratio:4/3.1;background:
+    radial-gradient(120% 80% at 80% -10%, rgba(212,73,42,.14), transparent 55%),
+    linear-gradient(180deg,#fffdf8,#f3eee4);
+    padding:22px;display:flex;flex-direction:column;gap:14px}
+  .sk-nav{display:flex;align-items:center;justify-content:space-between}
+  .sk-logo{width:64px;height:12px;border-radius:4px;background:var(--ink);opacity:.85}
+  .sk-pills{display:flex;gap:8px}
+  .sk-pills i{width:34px;height:9px;border-radius:99px;background:rgba(26,24,21,.16)}
+  .sk-h{height:20px;width:78%;border-radius:6px;background:var(--ink);opacity:.88;margin-top:8px}
+  .sk-h.two{width:58%}
+  .sk-sub{height:10px;width:70%;border-radius:5px;background:rgba(26,24,21,.22)}
+  .sk-btn{width:118px;height:34px;border-radius:99px;background:var(--accent);margin-top:4px}
+  .sk-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:auto}
+  .sk-cards i{height:54px;border-radius:9px;background:var(--paper-2);border:1px solid var(--line-2)}
+
+  /* ---------- Section scaffolding ---------- */
+  section{position:relative}
+  .section{padding:clamp(64px,10vw,120px) 0}
+  .sec-head{max-width:54ch}
+  .sec-head.center{margin:0 auto;text-align:center}
+  .sec-head h2{font-size:clamp(2rem,4vw,3.1rem);margin:16px 0 0}
+  .sec-head p{color:var(--ink-2);font-size:1.12rem;margin:18px 0 0}
+
+  /* ---------- How it works ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:clamp(40px,5vw,60px)}
+  .step{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:32px 30px;box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .2s ease}
+  .step:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+  .step .num{font-family:var(--serif);font-weight:600;font-size:2.6rem;line-height:1;color:var(--accent);letter-spacing:-.03em}
+  .step h3{font-size:1.4rem;margin:16px 0 0}
+  .step p{color:var(--ink-2);margin:12px 0 0;font-size:1.02rem}
+  @media (max-width:760px){.steps{grid-template-columns:1fr;gap:16px}}
+
+
+  /* ---------- Why me (dark band) ---------- */
+  .dark{background:var(--ink);color:var(--paper)}
+  .dark .sec-head p{color:rgba(246,242,234,.72)}
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:clamp(40px,5vw,60px)}
+  @media (max-width:900px){.feat-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.feat-grid{grid-template-columns:1fr}}
+  .feat{padding:30px 26px;border:1px solid rgba(246,242,234,.13);border-radius:var(--radius);background:rgba(246,242,234,.03);transition:background .2s ease, transform .2s ease}
+  .feat:hover{background:rgba(246,242,234,.06);transform:translateY(-4px)}
+  .feat .ic{width:46px;height:46px;border-radius:12px;background:rgba(238,106,71,.16);color:var(--accent-bright);display:grid;place-items:center;margin-bottom:18px}
+  .feat .ic svg{width:24px;height:24px}
+  .feat h3{font-size:1.22rem}
+  .feat p{color:rgba(246,242,234,.7);margin-top:10px;font-size:1rem}
+
+  /* ---------- Meet the team ---------- */
+  /* Featured founder card — larger, photo beside name */
+  .team-lead{max-width:700px;margin:clamp(40px,5vw,60px) auto 26px;display:grid;grid-template-columns:210px 1fr;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);transition:transform .22s ease, box-shadow .22s ease}
+  .team-lead:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+  .team-lead .photo{aspect-ratio:auto;height:100%;min-height:230px}
+  .team-lead .member-body{display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,4vw,40px)}
+  .team-lead .member-body h3{font-size:1.8rem}
+  @media (max-width:560px){
+    .team-lead{grid-template-columns:1fr;max-width:380px}
+    .team-lead .photo{aspect-ratio:4/4.4;height:auto;min-height:0}
+  }
+  /* Row of three below */
+  .team-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  @media (max-width:900px){.team-row{grid-template-columns:repeat(2,1fr);max-width:720px;margin-inline:auto}}
+  @media (max-width:560px){.team-row{grid-template-columns:1fr;max-width:380px;margin-inline:auto}}
+  .member{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .22s ease, box-shadow .22s ease}
+  .member:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+  /* SWAP: drop the real photo in by replacing the .photo contents with <img alt="Name"> (it fills the frame). */
+  .photo{aspect-ratio:4/4.4;position:relative;display:grid;place-items:center;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% -10%, rgba(212,73,42,.16), transparent 55%),linear-gradient(180deg,#f3eee4,#e9e2d4)}
+  .photo img{width:100%;height:100%;object-fit:cover;object-position:center 50%}
+  /* Small team cards: TALLER frames so the whole head + shoulders fit with breathing room.
+     The photos are tall portraits; cover scales them to the frame WIDTH, so a near-square
+     frame zooms the face and crops the chin. A taller frame reveals more of the subject,
+     matching the featured founder card's head-and-shoulders framing. */
+  .team-row .photo{aspect-ratio:5/7}
+  .photo .ph{font-family:var(--serif);font-weight:600;font-size:2.6rem;color:var(--accent-deep);opacity:.8}
+  .photo .soon{position:absolute;bottom:12px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .member-body{padding:22px 24px 26px}
+  .member-body h3{font-size:1.32rem}
+  .member-body .role{display:block;font-size:.84rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin-top:6px}
+  .member-body p{color:var(--ink-2);margin-top:12px;font-size:1rem}
+
+  /* ---------- Guarantee strip ---------- */
+  .promise{padding:clamp(52px,7vw,84px) 0}
+  .promise-card{background:var(--accent);color:#fff;border-radius:26px;padding:clamp(34px,5vw,58px);display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;box-shadow:0 30px 60px -30px rgba(212,73,42,.7);position:relative;overflow:hidden}
+  .promise-card::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 120% at 100% 0%, rgba(255,255,255,.18), transparent 50%)}
+  .promise-card>*{position:relative}
+  .promise-card h2{font-size:clamp(1.7rem,3.2vw,2.5rem);color:#fff;max-width:18ch}
+  .promise-card p{margin-top:12px;color:rgba(255,255,255,.9);max-width:34ch}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(36px,5vw,72px);margin-top:clamp(40px,5vw,56px);align-items:start}
+  @media (max-width:860px){.contact-grid{grid-template-columns:1fr;gap:36px}}
+  .contact-aside h3{font-size:1.5rem;margin-bottom:6px}
+  .contact-aside .muted{color:var(--ink-2);margin-bottom:26px}
+  .contact-line{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+  .contact-line:last-child{border-bottom:1px solid var(--line)}
+  .contact-line .ic{width:42px;height:42px;border-radius:11px;background:var(--paper-2);border:1px solid var(--line);display:grid;place-items:center;color:var(--accent-deep);flex:none}
+  .contact-line .ic svg{width:20px;height:20px}
+  .contact-line b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);font-weight:700}
+  .contact-line a,.contact-line span{font-size:1.06rem;font-weight:500}
+  .contact-line a:hover{color:var(--accent-deep)}
+
+  form.card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(26px,4vw,38px);box-shadow:var(--shadow)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.9rem;font-weight:600;margin-bottom:8px}
+  .field input,.field textarea{
+    width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);background:var(--paper);
+    border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:var(--ink-3)}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(212,73,42,.12)}
+  .field textarea{resize:vertical;min-height:118px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:480px){.row2{grid-template-columns:1fr}}
+  form .btn{width:100%}
+  .privacy{font-size:.82rem;color:var(--ink-3);margin-top:14px;text-align:center}
+  .form-note{display:none;margin-top:16px;padding:14px 16px;border-radius:12px;background:rgba(47,93,80,.1);border:1px solid rgba(47,93,80,.25);color:#234c3f;font-size:.95rem;font-weight:500}
+  .form-note.show{display:block}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:rgba(246,242,234,.66);padding:clamp(48px,6vw,72px) 0 36px}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap;padding-bottom:34px;border-bottom:1px solid rgba(246,242,234,.12)}
+  footer .brand{color:var(--paper)}
+  .foot-tag{max-width:34ch;margin-top:14px;font-size:.98rem}
+  .foot-links{display:flex;gap:28px;flex-wrap:wrap}
+  .foot-links a{color:rgba(246,242,234,.72);font-weight:500;font-size:.96rem}
+  .foot-links a:hover{color:var(--paper)}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:26px;font-size:.86rem;color:rgba(246,242,234,.5)}
+
+  /* ---------- Sticky mobile CTA ---------- */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(246,242,234,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:none}
+  .sticky-cta .btn{width:100%}
+  @media (max-width:880px){.sticky-cta{display:block}body{padding-bottom:78px}}
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.browser{transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Websites By Will home">
+      <span class="mark" aria-hidden="true">W</span>
+      Websites By Will
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#offer">The offer</a>
+      <a href="#why">Why me</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="phone" href="#contact" style="font-weight:600;color:var(--ink-2)">Get in touch</a>
+      <a class="btn btn-primary" href="#contact">Get a free sample</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Web design — Christchurch, NZ</span>
+      <h1>I'll build your website <em>first</em>. You only pay if you love it.</h1>
+      <p class="lede">Clean, fast, professional sites for Kiwi small businesses. I make you a free sample upfront — then it's $299 once. You own it outright. No monthly fees, ever.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get my free sample <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="btn btn-ghost" href="#why">Why choose me</a>
+      </div>
+      <ul class="hero-trust">
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Free sample first</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> $299 one-off</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No monthly fees</li>
+        <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> You own it</li>
+      </ul>
+    </div>
+
+    <!-- Hero visual: faux site preview. Swap the whole .screen for <img src="hero-screenshot.png" alt="..."> -->
+    <div class="mock reveal" aria-hidden="true">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span>yourbusiness.co.nz</span></div>
+        <div class="screen">
+          <div class="sk-nav"><div class="sk-logo"></div><div class="sk-pills"><i></i><i></i><i></i></div></div>
+          <div class="sk-h"></div><div class="sk-h two"></div>
+          <div class="sk-sub"></div>
+          <div class="sk-btn"></div>
+          <div class="sk-cards"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE OFFER / HOW IT WORKS ================= -->
+<section class="section" id="offer">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>See your website <em>before</em> you spend a dollar.</h2>
+      <p>No deposits, no risk, no awkward sales pitch. I do the work first — you decide once it's in front of you.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3>I build you a free sample</h3>
+        <p>I design a real, custom homepage for your business — not a template — and send it to you. Costs you nothing.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <h3>You take a look</h3>
+        <p>Love it? We make it live. Not quite right? No worries — no charge, no pressure, no hard feelings.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03</div>
+        <h3>Pay once, it's yours</h3>
+        <p>A single $299 payment and the site is yours outright. No subscriptions, no lock-in, no monthly fees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ME (dark) ================= -->
+<section class="section dark" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow light">Why choose me</span>
+      <h2>Big-agency quality, without the big-agency everything.</h2>
+      <p>You deal with the person actually building your site — start to finish.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+        <h3>Local</h3>
+        <p>Christchurch born and based. You're talking to a real Kiwi who gets small business — not an overseas call centre.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+        <h3>Fast</h3>
+        <p>Sites that load in under two seconds, and a sample in your inbox within days — not weeks of back and forth.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="8" r="4.2"/></svg></div>
+        <h3>Personal</h3>
+        <p>One person, start to finish. No project managers, no tickets, no being passed around. Just message me directly.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Affordable</h3>
+        <p>$299 once and it's yours. No monthly fees, no lock-in contracts, no surprise renewals. Ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEET THE TEAM ================= -->
+<section class="section" id="team">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">Meet the team</span>
+      <h2>The people behind your website.</h2>
+      <p>Real Kiwis who'll actually pick up the phone. You'll always know exactly who you're dealing with.</p>
+    </div>
+    <!-- FEATURED FOUNDER. Add real photo:  <div class="photo"><img src="will.jpg" alt="Will"></div>
+         Add your surname when ready, e.g.  <h3>Will Wilson</h3> -->
+    <article class="team-lead reveal">
+      <div class="photo"><img src="assets/will.jpg" alt="Will, Founder &amp; Web Designer"></div>
+      <div class="member-body">
+        <h3>Will</h3>
+        <span class="role">Founder &amp; Web Designer</span>
+        <p>Young Christchurch designer who started Websites By Will to give local small businesses sites that actually look the part. Builds every site personally, start to finish.</p>
+      </div>
+    </article>
+
+    <div class="team-row">
+
+      <!-- LUKE. Add real photo:  <div class="photo"><img src="luke.jpg" alt="Luke"></div> -->
+      <article class="member reveal">
+        <div class="photo"><img src="assets/luke.jpg" alt="Luke"></div>
+        <div class="member-body">
+          <h3>Luke</h3>
+          <span class="role">Sales</span>
+        </div>
+      </article>
+
+      <!-- HUNTER. Add real photo:  <div class="photo"><img src="hunter.jpg" alt="Hunter"></div> -->
+      <article class="member reveal">
+        <div class="photo"><img src="assets/hunter.jpg" alt="Hunter"></div>
+        <div class="member-body">
+          <h3>Hunter</h3>
+          <span class="role">Sales</span>
+        </div>
+      </article>
+
+      <!-- WILLIAM PATTERSON -->
+      <article class="member reveal">
+        <div class="photo"><img src="assets/william-patterson.jpg" alt="William Patterson"></div>
+        <div class="member-body">
+          <h3>William</h3>
+          <span class="role">Sales</span>
+        </div>
+      </article>
+
+      <!-- SAM PAYTON -->
+      <article class="member reveal">
+        <div class="photo"><img src="assets/sam.jpg" alt="Sam Payton"></div>
+        <div class="member-body">
+          <h3>Sam</h3>
+          <span class="role">Sales</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUARANTEE ================= -->
+<section class="promise">
+  <div class="wrap">
+    <div class="promise-card reveal">
+      <div>
+        <h2>If you don't love it, you don't pay. Simple as that.</h2>
+        <p>That's the whole deal. I back my work, so the risk is on me — not you.</p>
+      </div>
+      <a class="btn btn-light" href="#contact">Start my free sample <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section" id="contact" style="padding-top:clamp(20px,3vw,40px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Let's get your free sample started.</h2>
+      <p>Tell me a bit about your business and I'll put together a free sample site — usually within a few days. No cost, no commitment.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-aside reveal">
+        <h3>Rather just reach out?</h3>
+        <p class="muted">However you like — I'll get back to you quick.</p>
+        <!-- tap-to-email / tap-to-call (swap in your real number if you'd like one shown) -->
+        <div class="contact-line">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <div><b>Email</b><a href="mailto:websitesbywillww@gmail.com">websitesbywillww@gmail.com</a></div>
+        </div>
+        <div class="contact-line">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></span>
+          <div><b>Based in</b><span>Christchurch — building for all of NZ</span></div>
+        </div>
+        <div class="contact-line">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <div><b>Turnaround</b><span>Free sample, usually within a few days</span></div>
+        </div>
+      </div>
+
+      <!-- Submissions go to Will's inbox via EmailJS; the AI sales rep then emails the
+           business through Brevo to start the conversation. The JS below sends + stays on page. -->
+      <form class="card reveal" id="leadForm" novalidate>
+        <div class="row2">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Jess Thompson" required>
+          </div>
+          <div class="field">
+            <label for="business">Business name</label>
+            <input id="business" name="business" type="text" placeholder="Thompson Plumbing">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@business.co.nz" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span style="color:var(--ink-3);font-weight:400">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" placeholder="027 123 4567">
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">What does your business do?</label>
+          <textarea id="message" name="message" placeholder="e.g. We're a plumbing business in Tauranga — bathrooms, hot water, general repairs."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Send &amp; get my free sample <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></button>
+        <p class="privacy">Your details only ever get used to reply about your website. Never shared.</p>
+        <div class="form-note" id="formNote">Thanks! I'll be in touch soon.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="#top"><span class="mark" aria-hidden="true">W</span> Websites By Will</a>
+        <p class="foot-tag">Clean, fast, honest websites for NZ small businesses. Built by Will in Christchurch.</p>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#offer">The offer</a>
+        <a href="#why">Why me</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:websitesbywillww@gmail.com">Email me</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Websites By Will · Christchurch, NZ</span>
+      <span>Made by Will (obviously) — and yes, this site's free-sampled too.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= STICKY MOBILE CTA ================= -->
+<div class="sticky-cta"><a class="btn btn-primary" href="#contact">Get my free sample</a></div>
+
+<!-- EmailJS SDK — delivers contact-form submissions to Will's inbox -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Header shadow on scroll
+  const header = document.getElementById('top');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  // Scroll reveal (subtle, respects reduced-motion via CSS)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i) => {
+    el.style.transitionDelay = (Math.min(i%3,2)*0.07) + 's';
+    io.observe(el);
+  });
+
+  // Contact form -> delivers the lead to Will's inbox via EmailJS (same account as BinBlast).
+  // EmailJS only NOTIFIES Will; the AI sales rep then emails the business through Brevo.
+  emailjs.init({ publicKey: 'xdStEQ_Pf8wXpgCzp' });
+  const EMAILJS_SERVICE  = 'service_asskkrl';
+  const EMAILJS_TEMPLATE = 'template_73ky9eb';
+  const form = document.getElementById('leadForm');
+  const formNote = document.getElementById('formNote');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  // Read fields by id (form.name would clash with the form element's own .name property)
+  const val = (id) => (document.getElementById(id).value || '').trim();
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    if (!val('name') || !val('email')){
+      form.reportValidity ? form.reportValidity() : alert('Please add your name and email.');
+      return;
+    }
+    submitBtn.disabled = true;
+    try {
+      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+        name:     val('name'),
+        business: val('business') || '(not given)',
+        email:    val('email'),
+        phone:    val('phone') || '(not given)',
+        message:  val('message') || '(not given)',
+      });
+      form.reset();
+      formNote.textContent = "Thanks! Your details are in — I'll be in touch shortly.";
+      formNote.classList.add('show');
+    } catch (err){
+      console.error('EmailJS error:', err && (err.text || err.status || err));
+      formNote.textContent = "Something went wrong sending that. Please email websitesbywillww@gmail.com directly.";
+      formNote.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
