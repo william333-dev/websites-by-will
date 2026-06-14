@@ -251,6 +251,28 @@
   .sticky-cta .btn{width:100%}
   @media (max-width:880px){.sticky-cta{display:block}body{padding-bottom:78px}}
 
+  /* ---------- Recent work ---------- */
+  .work-card{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,4.5vw,60px);align-items:center;margin-top:clamp(40px,5vw,60px)}
+  @media (max-width:860px){.work-card{grid-template-columns:1fr;gap:34px}}
+  .work-preview{display:block}
+  .work-screen{display:block;position:relative;padding:0;aspect-ratio:16/10.6;overflow:hidden}
+  .work-screen .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+  .work-screen.no-shot .shot{display:none}
+  /* On-brand stand-in shown until a real screenshot is dropped in at assets/scissor-sound.png */
+  .work-screen .shot-ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;text-align:center;padding:26px;
+    background:radial-gradient(120% 90% at 80% -12%, rgba(204,43,43,.40), transparent 56%), linear-gradient(180deg,#1f1f1f,#151515);color:#f5f0e8}
+  .work-screen .shot-ph .ss-logo{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.2rem);letter-spacing:.01em;color:#fff}
+  .work-screen .shot-ph .ss-sub{font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#cabfb1}
+  .work-screen .shot-ph .ss-stars{color:#f5b427;letter-spacing:.12em;font-size:1.05rem;margin-top:4px}
+  .work-screen .shot-ph .ss-rev{font-size:.78rem;color:rgba(245,240,232,.6)}
+  .work-body h3{font-size:clamp(1.5rem,3vw,2rem);margin:0}
+  .work-body p{color:var(--ink-2);font-size:1.08rem;margin:14px 0 0;max-width:42ch}
+  .work-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}
+  .work-tags li{font-size:.76rem;font-weight:700;letter-spacing:.02em;color:var(--accent-deep);background:rgba(212,73,42,.09);border:1px solid rgba(212,73,42,.18);padding:5px 12px;border-radius:999px}
+  .work-actions{margin-top:26px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .work-live{display:inline-flex;align-items:center;gap:9px;font-size:.92rem;font-weight:600;color:var(--ink-2)}
+  .work-live .dot{width:9px;height:9px;border-radius:50%;background:#3fae6a;box-shadow:0 0 0 4px rgba(63,174,106,.16)}
+
   /* ---------- Scroll reveal ---------- */
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
@@ -269,6 +291,7 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#offer">The offer</a>
       <a href="#why">Why me</a>
+      <a href="#work">Work</a>
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -370,6 +393,52 @@
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3>Affordable</h3>
         <p>$299 once and it's yours. No monthly fees, no lock-in contracts, no surprise renewals. Ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECENT WORK ================= -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Recent work</span>
+      <h2>Real sites for <em>real</em> Kiwi businesses.</h2>
+      <p>Here's one I built and launched recently — live, in use, and bringing a local business properly online.</p>
+    </div>
+
+    <div class="work-card">
+      <!-- Whole preview links to the live site; the browser frame lifts on hover like the hero mock -->
+      <a class="work-preview reveal" href="https://william333-dev.github.io/scissor-sound/" target="_blank" rel="noopener" aria-label="Open the live Scissor Sound website in a new tab">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>william333-dev.github.io/scissor-sound</span></div>
+          <div class="screen work-screen">
+            <!-- On-brand stand-in (shows only if the screenshot is missing). -->
+            <div class="shot-ph" aria-hidden="true">
+              <div class="ss-logo">Scissor Sound</div>
+              <div class="ss-sub">Unisex Salon · Hamilton</div>
+              <div class="ss-stars">★★★★★</div>
+              <div class="ss-rev">4.9 from 376 reviews</div>
+            </div>
+            <!-- SWAP: replace assets/scissor-sound.png with a newer screenshot any time — it fills this frame. -->
+            <img class="shot" src="assets/scissor-sound.png" alt="The Scissor Sound Unisex Salon website, built by Will"
+                 loading="lazy" onerror="this.closest('.work-screen').classList.add('no-shot')">
+          </div>
+        </div>
+      </a>
+
+      <div class="work-body reveal">
+        <ul class="work-tags">
+          <li>Barbershop</li>
+          <li>Hamilton</li>
+          <li>4.9★ · 376 reviews</li>
+        </ul>
+        <h3>Scissor Sound — Unisex Salon, Hamilton</h3>
+        <p>A modern barbershop website with online presence, real reviews, and a clean booking-focused design.</p>
+        <div class="work-actions">
+          <a class="btn btn-primary" href="https://william333-dev.github.io/scissor-sound/" target="_blank" rel="noopener">View site <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <span class="work-live"><span class="dot"></span> Live &amp; in use</span>
+        </div>
       </div>
     </div>
   </div>
@@ -523,6 +592,7 @@
       <nav class="foot-links" aria-label="Footer">
         <a href="#offer">The offer</a>
         <a href="#why">Why me</a>
+        <a href="#work">Work</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
         <a href="mailto:websitesbywillww@gmail.com">Email me</a>
